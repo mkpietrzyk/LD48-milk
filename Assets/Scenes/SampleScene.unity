@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 79409321}
   - component: {fileID: 79409320}
   - component: {fileID: 79409319}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -844,6 +844,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  mainCamera: {fileID: 1687258584}
   selectedObjectID: {fileID: 11400000, guid: 9074cf0a981ae3840a406f4b68628f35, type: 2}
 --- !u!120 &1807299634
 LineRenderer:
@@ -865,7 +869,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: f6b331203444286488e1fdd13b9d1e87, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -897,7 +901,16 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.16168088
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0.38322955
         inSlope: 0
         outSlope: 0
         tangentMode: 0
