@@ -28,6 +28,62 @@ public class CameraMovement : MonoBehaviour
             Vector3 milkFactoryPosition = MoveTo(lastConnection);
             transform.position = milkFactoryPosition;
         }
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            float xSpeed = 5f;
+            float zSpeed = 5f;
+            
+            var position = transform.position;
+            float x = position.x;
+            float z = position.z;
+            float y = position.y;
+            
+            newPosition = new Vector3(x + xSpeed, y, z + zSpeed);
+            transform.position = Vector3.Lerp(position, newPosition, 5f * Time.deltaTime);
+        }
+        
+        if (Input.GetKey(KeyCode.S))
+        {
+            float xSpeed = 5f;
+            float zSpeed = 5f;
+            
+            var position = transform.position;
+            float x = position.x;
+            float z = position.z;
+            float y = position.y;
+            
+            newPosition = new Vector3(x - xSpeed, y, z - zSpeed);
+            transform.position = Vector3.Lerp(position, newPosition, 5f * Time.deltaTime);
+        }
+        
+        if (Input.GetKey(KeyCode.A))
+        {
+            float xSpeed = 5f;
+            float zSpeed = 5f;
+            
+            var position = transform.position;
+            float x = position.x;
+            float z = position.z;
+            float y = position.y;
+            
+            newPosition = new Vector3(x - xSpeed, y, z + zSpeed);
+            transform.position = Vector3.Lerp(position, newPosition, 5f * Time.deltaTime);
+        }
+        
+        if (Input.GetKey(KeyCode.D))
+        {
+            float xSpeed = 5f;
+            float zSpeed = 5f;
+            
+            var position = transform.position;
+            float x = position.x;
+            float z = position.z;
+            float y = position.y;
+            
+            newPosition = new Vector3(x + xSpeed, y, z - zSpeed);
+            transform.position = Vector3.Lerp(position, newPosition, 5f * Time.deltaTime);
+        }
         
         if (Input.GetMouseButton(1))
         {
@@ -47,7 +103,7 @@ public class CameraMovement : MonoBehaviour
     private Vector3 MoveTo(GameObject target)
     {
         Vector3 targetPosition = target.transform.position;
-        Vector3 offsetCoordinates = new Vector3(targetPosition.x - 13, 10f, targetPosition.z - 13);
+        Vector3 offsetCoordinates = new Vector3(targetPosition.x - 16, 10f, targetPosition.z - 12);
         return offsetCoordinates;
     }
 }

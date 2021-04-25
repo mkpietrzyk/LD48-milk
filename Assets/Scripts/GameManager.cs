@@ -37,7 +37,8 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(UpdateScore());
         SpawnObjects(household, 50);
-        SpawnObjects(tree, 80);
+        SpawnObjects(tree, 100);
+        cowsCount.Value = 5;
     }
 
     // Update is called once per frame
