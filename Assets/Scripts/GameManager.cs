@@ -36,8 +36,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(UpdateScore());
-        SpawnObjects(household);
-        SpawnObjects(tree);
+        SpawnObjects(household, 50);
+        SpawnObjects(tree, 80);
     }
 
     // Update is called once per frame
@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SpawnObjects(GameObject go)
+    public void SpawnObjects(GameObject go, int amount)
     {
         float yPos = 0;
 
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
         Vector3 min = new Vector3(0, 0, -30);
         Vector3 max = new Vector3(130, 0, 30);
 
-        for (int i = 0; i <= 50; i++)
+        for (int i = 0; i <= amount; i++)
         {
             float randomX = Random.Range(min.x, max.x);
             float randomZ = Random.Range(min.z, max.z);
