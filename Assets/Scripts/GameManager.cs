@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         while (!gamePause)
         {
             yield return new WaitForSeconds(5);
-            int cowsHappiness = cowsCount.Value + (int) (cowsCount.Value * 0.2f);
+            int cowsHappiness = (int) (cowsCount.Value * 0.2f);
             int currentBalance = householdsCount.Value * 10 + cowsCount.Value * cowsHappiness - cowsCount.Value * 5 - (int) connectionDistance.Value;
             balance.Value = currentBalance;
             cash.Value += currentBalance;
