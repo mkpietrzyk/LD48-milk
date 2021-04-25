@@ -41,6 +41,12 @@ public class GameManager : MonoBehaviour
         {
             PauseGame();
         }
+
+        if (!gameEnded.Value && (cash.Value < 0 || householdsCount.Value == 30))
+        {
+            gameEnded.Value = true;
+            uiState.Value = "EndMenu";
+        }
     }
 
     private IEnumerator UpdateScore()
@@ -115,7 +121,13 @@ public class GameManager : MonoBehaviour
 
     public void ReturnToMenu()
     {
+        cowsCount.Value = 2;
+        cash.Value = 100;
+        balance.Value = 0;
+        householdsCount.Value = 0;
+        connectionDistance.Value = 0;
         gameStarted.Value = false;
+        gameEnded.Value = false;
         uiState.Value = "MainMenu";
         SceneManager.LoadScene("Menu");
     }
