@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -25,28 +26,20 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        uiState.Value = uiState.InitialValue;
         cowsCount.Value = 2;
         cash.Value = 100;
         balance.Value = 0;
         householdsCount.Value = 0;
         connectionDistance.Value = 0;
         StartCoroutine(UpdateScore());
-        SpawnObjects(household, 50);
+        SpawnObjects(household, 30);
         SpawnObjects(tree, 150);
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (!gamePaused.Value && gameStarted.Value && Input.GetKeyDown(KeyCode.Escape))
         {
             PauseGame();
-        }
-
-        if (gamePaused.Value && Input.GetKeyDown(KeyCode.Escape))
-        {
-            ResumeGame();
         }
     }
 
@@ -55,9 +48,10 @@ public class GameManager : MonoBehaviour
         while (gameStarted.Value)
         {
             yield return new WaitForSeconds(5);
-            int cowsHappiness = (int) (cowsCount.Value * 0.2f);
-            int cowsUnhapiness = (int) (householdsCount.Value / cowsCount.Value) * 10;
-            int currentBalance = householdsCount.Value * 20 + cowsCount.Value * cowsHappiness - cowsCount.Value * 5 - (int) connectionDistance.Value - cowsUnhapiness;
+            int cowsHappiness = (int) (cowsCount.Value * 1.5f);
+            int cowsUnhapiness = (householdsCount.Value - cowsCount.Value) * 10;
+            int cowsUnhapinessValue = cowsUnhapiness < 0 ? 0 : cowsUnhapiness;
+            int currentBalance = householdsCount.Value * 20 + cowsCount.Value * cowsHappiness - cowsCount.Value * 5 - (int) connectionDistance.Value - cowsUnhapinessValue;
             balance.Value = currentBalance;
             cash.Value += currentBalance;
         }
@@ -81,7 +75,7 @@ public class GameManager : MonoBehaviour
         }
         
         Vector3 min = new Vector3(0, 0, -30);
-        Vector3 max = new Vector3(130, 0, 30);
+        Vector3 max = new Vector3(90, 0, 30);
 
         for (int i = 0; i <= amount; i++)
         {
@@ -96,6 +90,7 @@ public class GameManager : MonoBehaviour
     {
         gameStarted.Value = true;
         uiState.Value = "PlayerUI";
+        SceneManager.LoadScene("Game");
     }
 
     public void PauseGame()
@@ -111,11 +106,18 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         uiState.Value = "PlayerUI";
     }
+    
+    public void HTP()
+    {
+        uiState.Value = "HTPMenu";
+    }
+
 
     public void ReturnToMenu()
     {
         gameStarted.Value = false;
         uiState.Value = "MainMenu";
+        SceneManager.LoadScene("Menu");
     }
 
     public void QuitGame()
