@@ -5,7 +5,7 @@ public class CowsCounter : MonoBehaviour
 {
     public void UpdateCount(int count)
     {
-        string text = $"Cows: {count:D3}";
+        string text = $"Cows {count}";
         GetComponent<TextMeshPro>().text = text;
     }
 }

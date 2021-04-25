@@ -6,7 +6,7 @@ public class HouseholdsCounter : MonoBehaviour
 {
     public void UpdateCount(int count)
     {
-        string text = $"Households: {count:D3}";
+        string text = $"Households {count}";
         GetComponent<TextMeshPro>().text = text;
     }
 }
