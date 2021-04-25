@@ -6,6 +6,7 @@ using UnityEngine;
 public class MilkFactory : MonoBehaviour
 {
     public StringVariable selectedObjectID;
+    public GameObject connectionLine;
     void Start()
     {
         
@@ -21,10 +22,9 @@ public class MilkFactory : MonoBehaviour
     }
     
     private void OnMouseDown()
-    {
-        Debug.Log("click");
-        Debug.Log(transform.position);
-        selectedObjectID.SetValue("factory");
+    { 
         gameObject.tag = "selected";
+        selectedObjectID.SetValue("factory");
+        Instantiate(connectionLine, transform.position, Quaternion.identity);
     }
 }

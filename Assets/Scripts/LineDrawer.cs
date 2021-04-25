@@ -12,40 +12,66 @@ public class LineDrawer : MonoBehaviour
    
    private LineRenderer _lineRenderer;
    private Vector3 _origin;
+   [SerializeField] private string originID;
+   [SerializeField] private string targetID;
 
    public StringVariable selectedObjectID;
+   public IntVariable householdsCounter;
 
-   private void Start()
+   private void OnEnable()
    {
       _lineRenderer = GetComponent<LineRenderer>();
       _lineRenderer.positionCount = 2;
-      // _mouseStartPosition = GameObject.FindWithTag("selected").transform.position;      
+      mainCamera = Camera.main;
+      originID = selectedObjectID.Value;
    }
-
    private void Update()
    {
-      if (Input.GetMouseButtonDown(0))
+      if (originID != selectedObjectID.Value)
       {
-         _origin = GameObject.FindWithTag("selected").transform.position;         
+         
+      }
+      else
+      {
+         if (Input.GetMouseButtonDown(0))
+         {
+            _origin = GameObject.FindWithTag("selected").transform.position;         
+         }
+
+         if (Input.GetMouseButton(0))
+         {
+            _lineRenderer.SetPosition(0, new Vector3(_origin.x, 0.5f ,_origin.z));
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit raycastHit))
+            {
+               if (raycastHit.transform.CompareTag("household"))
+               {
+                  var position = raycastHit.transform.position;
+                  float x = position.x;
+                  float z = position.z;
+                  _lineRenderer.SetPosition(1, new Vector3(x, 0.5f, z));
+                  targetID = raycastHit.transform.gameObject.GetComponent<Household>().uniqueID;
+               }
+               else
+               {
+                  _lineRenderer.SetPosition(1, new Vector3(raycastHit.point.x, 0.5f, raycastHit.point.z));
+                  targetID = "";
+               }
+               distance = (raycastHit.point - _origin).magnitude;
+            }
+         }
       }
 
-      if (Input.GetMouseButton(0))
+      if (Input.GetMouseButtonUp(0))
       {
-         //_origin = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-         if (Physics.Raycast(ray, out RaycastHit raycastHit))
+         if (targetID == "")
          {
-            if (raycastHit.transform.CompareTag("household"))
-            {
-               _lineRenderer.SetPosition(0, new Vector3(_origin.x, 0.2f ,_origin.z));
-               _lineRenderer.SetPosition(1, raycastHit.transform.position);
-            }
-            else
-            {
-               _lineRenderer.SetPosition(0, new Vector3(_origin.x, 0.2f ,_origin.z));
-               _lineRenderer.SetPosition(1, raycastHit.point);
-            }
-            distance = (raycastHit.point - _origin).magnitude;
+            Destroy(gameObject);
+         }
+         else
+         {
+            householdsCounter.Value += 1;
+            
          }
       }
    }

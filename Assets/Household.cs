@@ -12,6 +12,7 @@ public class Household : MonoBehaviour
     public int connectedTo;
     public string uniqueID;
     public StringVariable selectedObjectID;
+    public GameObject connectionLine;
     private void OnEnable()
     {
         uniqueID = Guid.NewGuid().ToString();
@@ -35,9 +36,8 @@ public class Household : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log("click");
-        Debug.Log(transform.position);
-        selectedObjectID.SetValue(uniqueID);
         gameObject.tag = "selected";
+        selectedObjectID.SetValue(uniqueID);
+        Instantiate(connectionLine, transform.position, Quaternion.identity);
     }
 }
