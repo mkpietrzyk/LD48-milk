@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: c358917ca363a424695dced294c98444
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - balance: {fileID: 11400000, guid: 095578983dfdcab4aa13daeb91b9f470, type: 2}
+  - cash: {fileID: 11400000, guid: dc771ca4b91bbd44eadd8ba4eef95c8f, type: 2}
+  - cowsCount: {fileID: 11400000, guid: ac96258db82659e46a7afdf10a9fbdb5, type: 2}
+  - connectionDistance: {fileID: 11400000, guid: c1806a509f5ee244bb138a6147e42117, type: 2}
+  - householdsCount: {fileID: 11400000, guid: 92847784a05dc334a95494aaa3c943a6, type: 2}
+  - household: {instanceID: 0}
+  - tree: {instanceID: 0}
+  - houseContainer: {instanceID: 0}
+  - treeContainer: {instanceID: 0}
+  - gameStarted: {fileID: 11400000, guid: a7ab4e814b961ad48a7d9219deff94cb, type: 2}
+  - gamePaused: {fileID: 11400000, guid: b1549889086407042a07ffef172408cf, type: 2}
+  - gameEnded: {fileID: 11400000, guid: 97561a869fc563d48998f73540798647, type: 2}
+  - uiState: {fileID: 11400000, guid: f64154a8386f5544ca5ed02e2251259a, type: 2}
+  - setUIVisibility: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

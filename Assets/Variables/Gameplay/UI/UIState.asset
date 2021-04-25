@@ -17,7 +17,7 @@ MonoBehaviour:
   _value: MainMenu
   _changed: {fileID: 11400000, guid: f4b369aeb9ad1d24f99d118fae1d3c15, type: 2}
   _changedWithHistory: {fileID: 0}
-  _triggerChangedOnOnEnable: 0
+  _triggerChangedOnOnEnable: 1
   _triggerChangedWithHistoryOnOnEnable: 0
   _oldValue: MainMenu
   _initialValue: MainMenu
