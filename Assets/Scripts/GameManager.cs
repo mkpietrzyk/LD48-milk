@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private IntVariable householdsCount;
     [SerializeField] private GameObject household;
     [SerializeField] private GameObject tree;
+    [SerializeField] private GameObject houseContainer;
+    [SerializeField] private GameObject treeContainer;
     
 
     public enum MenuState
@@ -37,7 +39,7 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(UpdateScore());
         SpawnObjects(household, 50);
-        SpawnObjects(tree, 100);
+        SpawnObjects(tree, 150);
         cowsCount.Value = 5;
     }
 
@@ -61,15 +63,18 @@ public class GameManager : MonoBehaviour
     public void SpawnObjects(GameObject go, int amount)
     {
         float yPos = 0;
+        GameObject parent = null;
 
         if (go.CompareTag("household"))
         {
             yPos = 0.5f;
+            parent = houseContainer;
         }
 
         if (go.CompareTag("tree"))
         {
             yPos = 1.3f;
+            parent = treeContainer;
         }
         
         Vector3 min = new Vector3(0, 0, -30);
@@ -80,7 +85,7 @@ public class GameManager : MonoBehaviour
             float randomX = Random.Range(min.x, max.x);
             float randomZ = Random.Range(min.z, max.z);
             Vector3 randomPosition = new Vector3(randomX, yPos, randomZ);
-            Instantiate(go, randomPosition, Quaternion.identity);
+            Instantiate(go, randomPosition, Quaternion.identity, parent.transform);
         }
     }
 }

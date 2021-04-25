@@ -8,8 +8,8 @@ using Debug = UnityEngine.Debug;
 
 public class Household : MonoBehaviour
 {
-    public int connectedFrom;
-    public int connectedTo;
+    public string connectedFrom;
+    public string connectedTo;
     public string uniqueID;
     public StringVariable selectedObjectID;
     public GameObject connectionLine;

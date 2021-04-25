@@ -42,7 +42,6 @@ public class CowShop : MonoBehaviour
         float randomZ = Random.Range(min.z, max.z);
         Vector3 randomPosition = new Vector3(randomX, min.y, randomZ);
         cowCount.Value += 1;
-        var newCow = Instantiate(cow, randomPosition, Quaternion.identity);
-        newCow.transform.parent = cows.transform;
+        Instantiate(cow, randomPosition, Quaternion.identity, cows.transform);
     }
 }

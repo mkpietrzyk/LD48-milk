@@ -7,7 +7,6 @@ using UnityEngine;
 public class LineDrawer : MonoBehaviour
 {
    [SerializeField] private float distance;
-   [SerializeField] private LayerMask layerMask;
    [SerializeField] private Camera mainCamera;
    
    private LineRenderer _lineRenderer;
@@ -20,12 +19,16 @@ public class LineDrawer : MonoBehaviour
    public IntVariable connectionsCounter;
    public FloatVariable connectionsDistance;
 
+   public GameObject connections;
+
    private void OnEnable()
    {
       _lineRenderer = GetComponent<LineRenderer>();
       _lineRenderer.positionCount = 2;
       mainCamera = Camera.main;
       originID = selectedObjectID.Value;
+      connections = GameObject.FindWithTag("connectionsContainer");
+      transform.parent = connections.transform;
    }
    private void Update()
    {
@@ -71,9 +74,11 @@ public class LineDrawer : MonoBehaviour
             }
             else
             {
+               var target = GameObject.FindWithTag("selected").GetComponent<Household>();
                householdsCounter.Value += 1;
                connectionsDistance.Value += distance;
                connectionsCounter.Value += 1;
+               selectedObjectID.Value = "";
             }
          }
       }
