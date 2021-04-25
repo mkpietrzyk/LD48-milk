@@ -17,6 +17,8 @@ public class LineDrawer : MonoBehaviour
 
    public StringVariable selectedObjectID;
    public IntVariable householdsCounter;
+   public IntVariable connectionsCounter;
+   public FloatVariable connectionsDistance;
 
    private void OnEnable()
    {
@@ -60,18 +62,19 @@ public class LineDrawer : MonoBehaviour
                distance = (raycastHit.point - _origin).magnitude;
             }
          }
-      }
-
-      if (Input.GetMouseButtonUp(0))
-      {
-         if (targetID == "")
+         
+         if (Input.GetMouseButtonUp(0))
          {
-            Destroy(gameObject);
-         }
-         else
-         {
-            householdsCounter.Value += 1;
-            
+            if (targetID == "")
+            {
+               Destroy(gameObject);
+            }
+            else
+            {
+               householdsCounter.Value += 1;
+               connectionsDistance.Value += distance;
+               connectionsCounter.Value += 1;
+            }
          }
       }
    }
