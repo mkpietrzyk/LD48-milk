@@ -14,7 +14,7 @@ public class CameraMovement : MonoBehaviour
     private void Start()
     {
         newPosition = transform.position;
-        min = new Vector3(-17f, 10f, -31f);
+        min = new Vector3(-24f, 10f, -31f);
         max = new Vector3(120f, 10f, 16.50f);
     }
 
@@ -35,8 +35,8 @@ public class CameraMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-            float xSpeed = 5f;
-            float zSpeed = 5f;
+            float xSpeed = 4f;
+            float zSpeed = 4f;
             
             var position = transform.position;
             float x = position.x;
@@ -52,8 +52,8 @@ public class CameraMovement : MonoBehaviour
         
         if (Input.GetKey(KeyCode.S))
         {
-            float xSpeed = 5f;
-            float zSpeed = 5f;
+            float xSpeed = 4f;
+            float zSpeed = 4f;
             
             var position = transform.position;
             float x = position.x;
@@ -69,8 +69,8 @@ public class CameraMovement : MonoBehaviour
         
         if (Input.GetKey(KeyCode.A))
         {
-            float xSpeed = 5f;
-            float zSpeed = 5f;
+            float xSpeed = 4f;
+            float zSpeed = 4f;
             
             var position = transform.position;
             float x = position.x;
@@ -86,8 +86,8 @@ public class CameraMovement : MonoBehaviour
         
         if (Input.GetKey(KeyCode.D))
         {
-            float xSpeed = 5f;
-            float zSpeed = 5f;
+            float xSpeed = 4f;
+            float zSpeed = 4f;
             
             var position = transform.position;
             float x = position.x;
