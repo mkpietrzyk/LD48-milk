@@ -6,7 +6,7 @@ public class HouseholdsCounter : MonoBehaviour
 {
     public void UpdateCount(int count)
     {
-        string text = $"{count:D2}";
+        string text = $"{count:D2} / 50";
         TextMeshProUGUI ugui = GetComponent<TextMeshProUGUI>();
         TextMeshPro gameUI = GetComponent<TextMeshPro>();
         if (ugui)

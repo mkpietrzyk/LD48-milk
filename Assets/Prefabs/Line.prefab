@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6780445079086642411}
   m_Layer: 0
   m_Name: Line
-  m_TagString: Untagged
+  m_TagString: connection
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -153,13 +153,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 0
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 2147483647
   mainCamera: {fileID: 0}
   originID: 
   targetID: 
   selectedObjectID: {fileID: 11400000, guid: 9074cf0a981ae3840a406f4b68628f35, type: 2}
   householdsCounter: {fileID: 11400000, guid: 92847784a05dc334a95494aaa3c943a6, type: 2}
   connectionsCounter: {fileID: 11400000, guid: 4a9b554356acdc94e975678ae6b4224f, type: 2}
+  cash: {fileID: 11400000, guid: dc771ca4b91bbd44eadd8ba4eef95c8f, type: 2}
   connectionsDistance: {fileID: 11400000, guid: c1806a509f5ee244bb138a6147e42117, type: 2}
+  connections: {fileID: 0}
+  target: {fileID: 0}

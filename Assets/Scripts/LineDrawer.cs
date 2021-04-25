@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 
@@ -11,15 +9,19 @@ public class LineDrawer : MonoBehaviour
    
    private LineRenderer _lineRenderer;
    private Vector3 _origin;
+   private GameObject _originObject;
    [SerializeField] private string originID;
    [SerializeField] private string targetID;
 
    public StringVariable selectedObjectID;
    public IntVariable householdsCounter;
    public IntVariable connectionsCounter;
+   public IntVariable cash;
    public FloatVariable connectionsDistance;
 
    public GameObject connections;
+
+   public GameObject target;
 
    private void OnEnable()
    {
@@ -40,7 +42,8 @@ public class LineDrawer : MonoBehaviour
       {
          if (Input.GetMouseButtonDown(0))
          {
-            _origin = GameObject.FindWithTag("selected").transform.position;         
+            _origin = GameObject.FindWithTag("selected").transform.position;     
+            _originObject = GameObject.FindWithTag("selected");
          }
 
          if (Input.GetMouseButton(0))
@@ -55,12 +58,14 @@ public class LineDrawer : MonoBehaviour
                   float x = position.x;
                   float z = position.z;
                   _lineRenderer.SetPosition(1, new Vector3(x, 0.5f, z));
-                  targetID = raycastHit.transform.gameObject.GetComponent<Household>().uniqueID;
+                  target = raycastHit.transform.gameObject;
+                  targetID = target.GetComponent<Household>().uniqueID;
                }
                else
                {
                   _lineRenderer.SetPosition(1, new Vector3(raycastHit.point.x, 0.5f, raycastHit.point.z));
                   targetID = "";
+                  target = null;
                }
                distance = (raycastHit.point - _origin).magnitude;
             }
@@ -74,11 +79,34 @@ public class LineDrawer : MonoBehaviour
             }
             else
             {
-               var target = GameObject.FindWithTag("selected").GetComponent<Household>();
-               householdsCounter.Value += 1;
-               connectionsDistance.Value += distance;
-               connectionsCounter.Value += 1;
-               selectedObjectID.Value = "";
+               bool isPossibleToBuy = cash.Value > householdsCounter.Value * 20;
+               if (isPossibleToBuy)
+               {
+                  bool isTargetNotSetFrom = String.IsNullOrEmpty(target.GetComponent<Household>().connectedFrom);
+                  bool isOriginHousehold = _originObject.GetComponent<Household>();
+                  if (isTargetNotSetFrom)
+                  {
+                     target.GetComponent<Household>().connectedFrom = originID;
+                     if (isOriginHousehold)
+                     {
+                        _originObject.GetComponent<Household>().connectedTo = targetID;
+                     }
+                     cash.Value -= householdsCounter.Value * 20;
+                     householdsCounter.Value += 1;
+                     connectionsDistance.Value += distance;
+                     connectionsCounter.Value += 1;
+                     selectedObjectID.Value = "";
+
+                  }
+                  else
+                  {
+                     Destroy(gameObject);
+                  }
+               }
+               else
+               {
+                  Destroy(gameObject);
+               }
             }
          }
       }

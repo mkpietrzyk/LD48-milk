@@ -6,10 +6,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public List<GameObject> cows;
-    public List<GameObject> connections;
-    public List<GameObject> households;
-
     public bool gameStart;
     public bool gamePause;
 
@@ -37,10 +33,14 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        cowsCount.Value = 2;
+        cash.Value = 100;
+        balance.Value = 0;
+        householdsCount.Value = 0;
+        connectionDistance.Value = 0;
         StartCoroutine(UpdateScore());
         SpawnObjects(household, 50);
         SpawnObjects(tree, 150);
-        cowsCount.Value = 5;
     }
 
     // Update is called once per frame
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(5);
             int cowsHappiness = (int) (cowsCount.Value * 0.2f);
-            int currentBalance = householdsCount.Value * 10 + cowsCount.Value * cowsHappiness - cowsCount.Value * 5 - (int) connectionDistance.Value;
+            int currentBalance = householdsCount.Value * 20 + cowsCount.Value * cowsHappiness - cowsCount.Value * 5 - (int) connectionDistance.Value;
             balance.Value = currentBalance;
             cash.Value += currentBalance;
         }
