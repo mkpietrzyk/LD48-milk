@@ -13,9 +13,10 @@ public class GameManager : MonoBehaviour
     public bool gameStart;
     public bool gamePause;
 
-    [SerializeField] private IntVariable score;
+    [SerializeField] private IntVariable balance;
     [SerializeField] private IntVariable cash;
     [SerializeField] private IntVariable cowsCount;
+    [SerializeField] private FloatVariable connectionDistance;
     [SerializeField] private IntVariable householdsCount;
     [SerializeField] private GameObject household;
     [SerializeField] private GameObject tree;
@@ -49,9 +50,10 @@ public class GameManager : MonoBehaviour
         while (!gamePause)
         {
             yield return new WaitForSeconds(5);
-            int cashAdjustment = householdsCount.Value * 10 - cowsCount.Value * 5;
-            cash.Value += cashAdjustment;
-            score.Value = cashAdjustment * 1000;
+            int cowsHappiness = cowsCount.Value + (int) (cowsCount.Value * 0.2f);
+            int currentBalance = householdsCount.Value * 10 + cowsCount.Value * cowsHappiness - cowsCount.Value * 5 - (int) connectionDistance.Value;
+            balance.Value = currentBalance;
+            cash.Value += currentBalance;
         }
     }
 
