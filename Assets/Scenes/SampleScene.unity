@@ -733,11 +733,13 @@ MonoBehaviour:
   - {fileID: 0}
   connections: []
   households: []
-  cowsCount: 0
-  cash: 0
   gameStart: 0
   gamePause: 0
-  menuState: 0
+  score: {fileID: 11400000, guid: 095578983dfdcab4aa13daeb91b9f470, type: 2}
+  cash: {fileID: 11400000, guid: dc771ca4b91bbd44eadd8ba4eef95c8f, type: 2}
+  cowsCount: {fileID: 11400000, guid: ac96258db82659e46a7afdf10a9fbdb5, type: 2}
+  householdsCount: {fileID: 11400000, guid: 92847784a05dc334a95494aaa3c943a6, type: 2}
+  menuState: 2
 --- !u!1 &495123596
 GameObject:
   m_ObjectHideFlags: 0
